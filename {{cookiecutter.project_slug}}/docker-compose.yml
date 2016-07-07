@@ -1,0 +1,29 @@
+version: '2'
+services:
+  api:
+    build:
+      dockerfile: docker/FalconDockerfile
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - FALCON_SETTINGS_MODULE={{ cookiecutter.project_slug }}.settings.docker
+{% if cookiecutter.use_mongodb == "y" or cookiecutter.use_redisdb == "y" %}
+    links:
+{% if cookiecutter.use_mongodb == "y" %}
+      - mongodb
+{% endif %}{% if cookiecutter.use_redisdb == "y" %}
+      - redisdb
+{% endif %}{% if cookiecutter.use_mongodb == "y" %}
+  mongodb:
+    image: mongo
+    ports:
+      - "47017:27017"
+{% endif %}{% if cookiecutter.use_redisdb == "y" %}
+  redisdb:
+    image: redis
+    ports:
+      - "4379:6379"
+{% endif %}{% endif %}

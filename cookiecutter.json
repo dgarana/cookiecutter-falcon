@@ -1,0 +1,12 @@
+{
+    "project_name": "project_name",
+    "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_') }}",
+    "author_name": "Your Name",
+    "author_mail": "Your email",
+    "project_description": "A short description of the project.",
+    "project_url": "example.com",
+    "use_docker": "y",
+    "use_mongodb": "y",
+    "use_redisdb": "y",
+    "open_source_license": ["MIT", "BSD", "GPLv3", "Apache Software License 2.0", "Not open source"]
+}
